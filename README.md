@@ -1,16 +1,16 @@
 # 📈 Microwave Resonator Q-Factor & Background Analysis
 
-An interactive web application built with **Streamlit**, **SciPy**, and **Plotly** for automated fitting, background subtraction, and Q-factor extraction ($Q_{in}$, $Q_L$, $Q_{ex}$) of microwave resonator frequency sweeps across varying temperatures. 
+An interactive web application built with **Streamlit**, **SciPy**, and **Plotly** for automated fitting, optional background subtraction, and Q-factor extraction ($Q_{in}$, $Q_L$, $Q_{ex}$) of microwave resonator frequency sweeps across varying temperatures. 
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red.svg)
 ![Plotly](https://img.shields.io/badge/Plotly-Interactive--Plots-brightgreen.svg)
 ![SciPy](https://img.shields.io/badge/SciPy-Optimization--%26--Fitting-green.svg)
 
-* Gemini Helps a lot for the app interface *
+* Gemini helps me a lot for the app interface *
 ---
 
-## 🌟 Key Features
+## 🌟 Key Features of this 
 
 * **Complex Lorentzian Model Fitting:** Fits raw or background-corrected magnitude $\vert{}S_{21}\vert{}$ data to extract Loaded Quality Factor ($Q_L$), External Quality Factor ($Q_{ex}$), and Internal Quality Factor ($Q_{in}$).
 * **Iterative Background Subtraction:** Chains background models across sequential temperature scans, interpolating and extrapolating background curves from lowest to highest temperature.
@@ -63,7 +63,7 @@ $$Q_{in} = \frac{Q_L \cdot Q_e}{Q_e - Q_L}$$
 To avoid local minima in steep resonance landscapes, a two stage grid search strategy is used:
 1. **Grid Search over $f_0$:** $f_0$ is evaluated over $N_{\text{trials}}$ fixed frequencies within a window RELAXATION RANGE around the peak.
 2. **Sub-Optimization:** For each trial $f_0$, non-linear least squares (`scipy.optimize.curve_fit`) optimizes $[Q_L, Q_e, A, B]$ within strict parameter bounds.
-3. **$\chi^2$ Scoring:** The optimal parameter set is chosen by minimizing:
+3. **$\chi^2$ Scoring:** The optimal parameter set is chosen by minimizing. Here Chi2_norm is the number of points of the data for the fit. Also, I considered the noise variance of the measurement feedline is 1 :
 
 $$\chi^2 = \frac{1}{\text{CHI2 NORM}} \sum_{{i}} \left( y{\text{obs}, i} - y{\text{fit}, i} \right)^2$$
 
@@ -74,7 +74,7 @@ $$\chi^2 = \frac{1}{\text{CHI2 NORM}} \sum_{{i}} \left( y{\text{obs}, i} - y{\te
 ### 1. File Naming Convention
 To enable automatic temperature parsing, filenames must start with 'S12' ( as file prefix ) and must include `_T_` followed by the temperature in Kelvin:
 
-The uploaded files have - prefix 's12' , temp. after `_T_` & it all have 3 peaks of 3000 rows each( so you need to Restrict Row Range from 1 yo 3000 for each peaks)
+The uploaded files have - prefix 's12' , temp. after `_T_` & if the data have 3 peaks of 3000 rows each- so you need to Restrict Row Range from 1 yo 3000 for each peaks.
 ```text
-S12_..._T_0.050.txt  --> Parsed Temperature: 0.050 K
-S12_..._T_4.200.txt  --> Parsed Temperature: 4.200 K
+S12_..._T_0.050.txt  --> Noted Temperature: 0.050 K
+S12_..._T_4.200.txt  --> Noted Temperature: 4.200 K
