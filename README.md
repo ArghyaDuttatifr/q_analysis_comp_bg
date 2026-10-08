@@ -74,7 +74,7 @@ $$\chi^2 = \frac{1}{\text{CHI2 NORM}} \sum_{{i}} \left( y{\text{obs}, i} - y{\te
 ### 1. File Naming Convention
 To enable automatic temperature parsing, filenames must start with 'S12' ( as file prefix ) and must include `_T_` followed by the temperature in Kelvin:
 
-The uploaded files have - prefix 's12' , temp. after `_T_` & if the data have 3 peaks of 3000 rows each- so you need to Restrict Row Range from 1 yo 3000 for each peaks.
+The uploaded files have - prefix 's12' , temp. after `_T_` & if the data have 3 peaks of 3000 rows each- so you need to Restrict Row Range from 1 to 3000 for each peaks.
 ```text
 S12_..._T_0.050.txt  --> Noted Temperature: 0.050 K
 S12_..._T_4.200.txt  --> Noted Temperature: 4.200 K
